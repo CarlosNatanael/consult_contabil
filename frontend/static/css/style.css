@@ -1,20 +1,21 @@
 /* =========================================
-   VARIÁVEIS GLOBAIS E RESET
+   VARIÁVEIS GLOBAIS E RESET (A Mágica das Cores)
    ========================================= */
 :root {
-    --logo-blue: #005691; /* Cor exata extraída do logo image_0.png */
-    --text-dark: #1a1a1a;
-    --text-medium: #555555;
-    --bg-light: #fdfdfd; /* Um branco muito claro para o fundo */
-    --card-bg: #ffffff;
-    --white: #ffffff;
+    --gold-primary: #C89B3C; /* Dourado elegante e sofisticado */
+    --gold-dark: #A67C2B;    /* Dourado um pouco mais escuro para efeitos hover */
+    --text-dark: #1A1A1A;    /* Quase preto, excelente para leitura */
+    --text-medium: #555555;  /* Cinza para textos secundários */
+    --bg-light: #FAFAFA;     /* Branco off-white para o fundo do site */
+    --card-bg: #FFFFFF;      /* Branco puro para os cartões */
+    --white: #FFFFFF;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif; /* Mantenha a fonte profissional */
+    font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -36,7 +37,7 @@ a {
    ========================================= */
 .site-header {
     background-color: var(--white);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -51,10 +52,17 @@ a {
     padding: 15px 20px;
 }
 
+/* Nome da empresa no topo */
 .logo h1 a {
-    color: var(--logo-blue); /* Cor do logo aplicada ao texto da marca */
+    color: var(--text-dark); 
     font-size: 1.6rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo h1 a:hover {
+    color: var(--gold-primary);
 }
 
 .nav-links {
@@ -66,10 +74,13 @@ a {
 .nav-links a {
     font-weight: 600;
     color: var(--text-dark);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
 }
 
 .nav-links a:hover {
-    color: var(--logo-blue);
+    color: var(--gold-primary);
 }
 
 /* =========================================
@@ -80,9 +91,8 @@ a {
 }
 
 .hero {
-    /* Fundo azul com opacidade sobre uma imagem de fallback se houver */
-    background: linear-gradient(rgba(0, 86, 145, 0.9), rgba(0, 86, 145, 0.9)); 
-    background-color: var(--logo-blue); /* Fallback */
+    /* Fundo escuro para fazer o dourado brilhar */
+    background-color: var(--text-dark); 
     color: var(--white);
     text-align: center;
     padding: 120px 20px;
@@ -90,35 +100,42 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-bottom: 5px solid var(--gold-primary); /* Detalhe dourado na base */
 }
 
 .hero h2 {
     font-size: 2.8rem;
     margin-bottom: 20px;
     max-width: 800px;
+    color: var(--gold-primary); /* Título em dourado */
 }
 
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 40px;
     max-width: 600px;
-    opacity: 0.95;
+    opacity: 0.9;
+    color: var(--bg-light);
 }
 
+/* Botão Dourado Premium */
 .btn {
-    background-color: var(--white); /* Botão branco no hero para contraste */
-    color: var(--logo-blue); /* Texto azul no botão */
+    background-color: var(--gold-primary); 
+    color: var(--white); 
     padding: 15px 35px;
     font-size: 1.1rem;
     font-weight: 700;
-    border-radius: 5px;
-    border: 2px solid var(--white);
-    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 15px rgba(200, 155, 60, 0.3);
 }
 
 .btn:hover {
-    background-color: transparent;
-    color: var(--white);
+    background-color: var(--gold-dark);
+    transform: translateY(-2px);
 }
 
 /* =========================================
@@ -137,8 +154,18 @@ a {
 
 .servicos-header h2 {
     font-size: 2.4rem;
-    color: var(--logo-blue); /* Título da seção em azul */
+    color: var(--text-dark); 
     margin-bottom: 15px;
+}
+
+/* Linha decorativa dourada abaixo do título */
+.servicos-header h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--gold-primary);
+    margin: 15px auto 0;
 }
 
 .servicos-header p {
@@ -152,35 +179,60 @@ a {
     grid-template-columns: 1fr; 
 }
 
+/* =========================================
+   ESTILO DOS CARTÕES DE SERVIÇOS COM IMAGENS
+   ========================================= */
 .card-servico {
     background-color: var(--card-bg);
-    border: 1px solid #f0f0f0;
-    border-radius: 12px;
-    padding: 40px 25px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    overflow: hidden; /* Faz a imagem respeitar as bordas redondas do cartão */
+    text-align: left; /* Texto alinhado à esquerda fica mais sofisticado com imagens */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-servico:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+    border-color: var(--gold-primary);
 }
 
-.icone-servico {
-    font-size: 3rem;
-    color: var(--logo-blue); /* Ícones em azul */
-    margin-bottom: 25px;
+/* Área da Imagem */
+.imagem-servico {
+    width: 100%;
+    height: 200px; /* Altura padrão para todas as capas */
+    border-bottom: 3px solid var(--gold-primary); /* Detalhe dourado separando a foto */
 }
 
-.card-servico h3 {
-    font-size: 1.4rem;
-    color: var(--logo-blue); /* Títulos dos cartões em azul */
+.imagem-servico img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta a imagem perfeitamente sem distorcer */
+    transition: transform 0.5s ease;
+}
+
+/* Efeito de zoom na foto ao passar o mouse (opcional, bem premium) */
+.card-servico:hover .imagem-servico img {
+    transform: scale(1.05);
+}
+
+/* Área do Texto */
+.card-conteudo {
+    padding: 30px 25px;
+    flex-grow: 1; /* Faz os cartões terem a mesma altura mesmo com textos de tamanhos diferentes */
+}
+
+.card-conteudo h3 {
+    font-size: 1.3rem;
+    color: var(--text-dark); 
     margin-bottom: 15px;
 }
 
-.card-servico p {
-    font-size: 1rem;
+.card-conteudo p {
+    font-size: 0.95rem;
     color: var(--text-medium);
     line-height: 1.6;
 }
@@ -189,12 +241,44 @@ a {
    RODAPÉ
    ========================================= */
 .site-footer {
-    background-color: var(--logo-blue); /* Fundo azul corporativo */
-    color: var(--white); /* Texto branco */
+    background-color: var(--text-dark); /* Fundo bem escuro */
+    color: var(--gold-primary); /* Texto em dourado */
     text-align: center;
-    padding: 25px;
+    padding: 30px 20px;
     margin-top: auto;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    border-top: 3px solid var(--gold-primary);
+}
+
+/* =========================================
+   BOTÃO FLUTUANTE DO WHATSAPP (Mantido Verde)
+   ========================================= */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366; 
+    color: #FFF;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+    fill: #FFF;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #1ebe57; 
 }
 
 /* =========================================
@@ -211,56 +295,21 @@ a {
 }
 
 @media (max-width: 768px) {
-    .logo h1 a { font-size: 1.4rem; }
+    /* Ajustes específicos para celular */
+    .logo h1 a { font-size: 1.3rem; }
+    
     .nav-links {
         gap: 15px;
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
+    
     .hero { padding: 80px 20px; }
     .hero h2 { font-size: 2.2rem; }
-}
-
-/* =========================================
-   BOTÃO FLUTUANTE DO WHATSAPP
-   ========================================= */
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366; /* Cor oficial do WhatsApp */
-    color: #FFF;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Garante que fique acima de tudo */
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.whatsapp-icon {
-    width: 35px;
-    height: 35px;
-    fill: #FFF;
-}
-
-/* Efeito ao passar o mouse (Desktop) */
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background-color: #1ebe57; /* Verde levemente mais escuro */
-    box-shadow: 2px 2px 20px rgba(37, 211, 102, 0.4);
-}
-
-/* =========================================
-   MEDIA QUERIES DO WHATSAPP (Ajustes para Mobile)
-   ========================================= */
-@media (max-width: 768px) {
+    
     .whatsapp-float {
         width: 50px;
         height: 50px;
-        bottom: 20px; /* Fica mais próximo da borda no celular */
+        bottom: 20px; 
         right: 20px;
     }
     
