@@ -88,10 +88,11 @@ a {
    ========================================= */
 .main-content {
     flex: 1;
+    display: flex;          /* NOVO: Transforma o main num container flexível */
+    flex-direction: column; /* NOVO: Organiza os itens de cima para baixo */
 }
 
 .hero {
-    /* Fundo escuro para fazer o dourado brilhar */
     background-color: var(--text-dark); 
     color: var(--white);
     text-align: center;
@@ -100,7 +101,8 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-bottom: 5px solid var(--gold-primary); /* Detalhe dourado na base */
+    border-bottom: 5px solid var(--gold-primary);
+    flex: 1; /* NOVO: Esta é a mágica! Faz o fundo escuro esticar e preencher o buraco branco */
 }
 
 .hero h2 {
