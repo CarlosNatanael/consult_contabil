@@ -368,9 +368,23 @@ section { padding: 120px 60px; }
   background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
 }
 .about-card-main-icon {
-  font-size: 4rem;
-  margin-bottom: 20px;
-  opacity: 0.8;
+    /* As margens negativas puxam a imagem por cima do padding do cartão para encostar nas bordas */
+    margin: -32px -32px 24px -32px; 
+    
+    /* Isso faz a div crescer e preencher todo o espaço restante (sua marcação roxa) */
+    flex-grow: 1; 
+    
+    overflow: hidden;
+    opacity: 1; /* Remove a transparência antiga */
+    background-color: #ffffff; /* Fundo branco caso a imagem do logo seja transparente */
+}
+
+.about-card-main-icon img {
+    width: 100%;
+    height: 100%;
+    /* O cover garante que a imagem preencha todo o espaço roxo sem amassar */
+    object-fit: cover; 
+    object-position: center;
 }
 .about-card-main h3 {
   font-family: 'Cormorant Garamond', serif;
@@ -988,4 +1002,54 @@ footer {
         width: 30px;
         height: 30px;
     }
+}
+
+/* =========================================
+   FORMULÁRIO DE CONTATO (CTA)
+   ========================================= */
+.cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 420px; /* Limita a largura do form para não ficar gigante no desktop */
+}
+
+.contato-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    background: var(--dark3); /* Fundo um pouco mais claro que a página */
+    padding: 35px;
+    border: 1px solid rgba(201, 168, 76, 0.15); /* Borda dourada bem suave */
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.contato-form input,
+.contato-form textarea {
+    width: 100%;
+    padding: 16px;
+    background: var(--dark2);
+    border: 1px solid rgba(201, 168, 76, 0.1);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao clicar para digitar na caixa */
+.contato-form input:focus,
+.contato-form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(201, 168, 76, 0.1);
+    background: var(--dark4);
+}
+
+.contato-form input::placeholder,
+.contato-form textarea::placeholder {
+    color: var(--text-muted);
 }
