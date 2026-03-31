@@ -543,14 +543,38 @@ section { padding: 120px 60px; }
   margin-bottom: 14px;
   color: var(--text);
 }
+/* =========================================
+   EFEITO DE EXPANSÃO NOS CARTÕES DE SERVIÇO
+   ========================================= */
+
 .service-desc {
   font-size: 0.75rem;
   color: var(--text-muted);
   line-height: 1.85;
   font-weight: 300;
+  
+  /* Esconde o texto inicialmente */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transform: translateY(10px); /* Empurra um pouquinho para baixo para dar efeito de subida */
+  
+  /* Controla a velocidade da animação de abrir e fechar */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
 }
+
+/* O que acontece quando o usuário passa o mouse ou toca no cartão */
+.service-card:hover .service-desc {
+  max-height: 250px; /* Altura máxima que o texto pode atingir ao expandir */
+  opacity: 1;
+  margin-top: 15px; /* Cria um respiro entre o título e o texto que acabou de aparecer */
+  transform: translateY(0);
+}
+
+/* Ajuste na Setinha "Saiba mais ->" para acompanhar o movimento */
 .service-arrow {
-  margin-top: 30px;
+  margin-top: 10px; /* Fica pertinho do título quando o cartão está fechado */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -560,9 +584,14 @@ section { padding: 120px 60px; }
   color: var(--gold);
   opacity: 0;
   transform: translateY(8px);
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.service-card:hover .service-arrow { opacity: 1; transform: translateY(0); }
+
+.service-card:hover .service-arrow { 
+  opacity: 1; 
+  transform: translateY(0); 
+  margin-top: 25px; /* Empurra a setinha um pouco mais para baixo quando o texto aparece */
+}
 /* PROCESS */
 .process { background: var(--dark2); }
 .process-inner {
