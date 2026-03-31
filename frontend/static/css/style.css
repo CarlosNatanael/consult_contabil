@@ -1,0 +1,85 @@
+/* =========================================
+   SESSÃO DE SERVIÇOS
+   ========================================= */
+
+.servicos-container {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o contêiner no desktop */
+}
+
+.servicos-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.servicos-header h2 {
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.servicos-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* O Segredo da Responsividade (CSS Grid) */
+.servicos-grid {
+    display: grid;
+    gap: 30px;
+    /* Padrão para Mobile: 1 coluna */
+    grid-template-columns: 1fr; 
+}
+
+/* Estilo Individual de cada Cartão */
+.card-servico {
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito de hover (quando passa o mouse por cima) */
+.card-servico:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icone-servico {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.card-servico h3 {
+    font-size: 1.3rem;
+    color: #0056b3; /* Azul corporativo, mude para a cor do cliente */
+    margin-bottom: 15px;
+}
+
+.card-servico p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* =========================================
+   MEDIA QUERIES (Ajustes para telas maiores)
+   ========================================= */
+
+/* Tablets (a partir de 768px): 2 colunas */
+@media (min-width: 768px) {
+    .servicos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktops (a partir de 1024px): 3 colunas */
+@media (min-width: 1024px) {
+    .servicos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
