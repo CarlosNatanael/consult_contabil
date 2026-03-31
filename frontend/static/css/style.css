@@ -1,85 +1,271 @@
 /* =========================================
+   VARIÁVEIS GLOBAIS E RESET
+   ========================================= */
+:root {
+    --logo-blue: #005691; /* Cor exata extraída do logo image_0.png */
+    --text-dark: #1a1a1a;
+    --text-medium: #555555;
+    --bg-light: #fdfdfd; /* Um branco muito claro para o fundo */
+    --card-bg: #ffffff;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Mantenha a fonte profissional */
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+/* =========================================
+   CABEÇALHO E NAVEGAÇÃO
+   ========================================= */
+.site-header {
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.logo h1 a {
+    color: var(--logo-blue); /* Cor do logo aplicada ao texto da marca */
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.nav-links a:hover {
+    color: var(--logo-blue);
+}
+
+/* =========================================
+   PÁGINA INICIAL (HERO SECTION)
+   ========================================= */
+.main-content {
+    flex: 1;
+}
+
+.hero {
+    /* Fundo azul com opacidade sobre uma imagem de fallback se houver */
+    background: linear-gradient(rgba(0, 86, 145, 0.9), rgba(0, 86, 145, 0.9)); 
+    background-color: var(--logo-blue); /* Fallback */
+    color: var(--white);
+    text-align: center;
+    padding: 120px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    max-width: 800px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    max-width: 600px;
+    opacity: 0.95;
+}
+
+.btn {
+    background-color: var(--white); /* Botão branco no hero para contraste */
+    color: var(--logo-blue); /* Texto azul no botão */
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 5px;
+    border: 2px solid var(--white);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: var(--white);
+}
+
+/* =========================================
    SESSÃO DE SERVIÇOS
    ========================================= */
-
 .servicos-container {
-    padding: 60px 20px;
+    padding: 80px 20px;
     max-width: 1200px;
-    margin: 0 auto; /* Centraliza o contêiner no desktop */
+    margin: 0 auto;
 }
 
 .servicos-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 .servicos-header h2 {
-    font-size: 2.2rem;
-    color: #1a1a1a;
-    margin-bottom: 10px;
+    font-size: 2.4rem;
+    color: var(--logo-blue); /* Título da seção em azul */
+    margin-bottom: 15px;
 }
 
 .servicos-header p {
     font-size: 1.1rem;
-    color: #666;
+    color: var(--text-medium);
 }
 
-/* O Segredo da Responsividade (CSS Grid) */
 .servicos-grid {
     display: grid;
     gap: 30px;
-    /* Padrão para Mobile: 1 coluna */
     grid-template-columns: 1fr; 
 }
 
-/* Estilo Individual de cada Cartão */
 .card-servico {
-    background-color: #ffffff;
-    border: 1px solid #eaeaea;
+    background-color: var(--card-bg);
+    border: 1px solid #f0f0f0;
     border-radius: 12px;
-    padding: 30px 20px;
+    padding: 40px 25px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efeito de hover (quando passa o mouse por cima) */
 .card-servico:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
 }
 
 .icone-servico {
     font-size: 3rem;
-    margin-bottom: 20px;
+    color: var(--logo-blue); /* Ícones em azul */
+    margin-bottom: 25px;
 }
 
 .card-servico h3 {
-    font-size: 1.3rem;
-    color: #0056b3; /* Azul corporativo, mude para a cor do cliente */
+    font-size: 1.4rem;
+    color: var(--logo-blue); /* Títulos dos cartões em azul */
     margin-bottom: 15px;
 }
 
 .card-servico p {
-    font-size: 0.95rem;
-    color: #555;
+    font-size: 1rem;
+    color: var(--text-medium);
     line-height: 1.6;
 }
 
 /* =========================================
-   MEDIA QUERIES (Ajustes para telas maiores)
+   RODAPÉ
    ========================================= */
-
-/* Tablets (a partir de 768px): 2 colunas */
-@media (min-width: 768px) {
-    .servicos-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.site-footer {
+    background-color: var(--logo-blue); /* Fundo azul corporativo */
+    color: var(--white); /* Texto branco */
+    text-align: center;
+    padding: 25px;
+    margin-top: auto;
+    font-size: 0.9rem;
 }
 
-/* Desktops (a partir de 1024px): 3 colunas */
+/* =========================================
+   MEDIA QUERIES (Responsividade Mobile/Desktop)
+   ========================================= */
+@media (min-width: 768px) {
+    .servicos-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (min-width: 1024px) {
-    .servicos-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .servicos-grid { grid-template-columns: repeat(3, 1fr); }
+    .hero h2 { font-size: 3.5rem; }
+    .navbar { padding: 20px 20px; }
+}
+
+@media (max-width: 768px) {
+    .logo h1 a { font-size: 1.4rem; }
+    .nav-links {
+        gap: 15px;
+        font-size: 0.95rem;
+    }
+    .hero { padding: 80px 20px; }
+    .hero h2 { font-size: 2.2rem; }
+}
+
+/* =========================================
+   BOTÃO FLUTUANTE DO WHATSAPP
+   ========================================= */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366; /* Cor oficial do WhatsApp */
+    color: #FFF;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Garante que fique acima de tudo */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-icon {
+    width: 35px;
+    height: 35px;
+    fill: #FFF;
+}
+
+/* Efeito ao passar o mouse (Desktop) */
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #1ebe57; /* Verde levemente mais escuro */
+    box-shadow: 2px 2px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* =========================================
+   MEDIA QUERIES DO WHATSAPP (Ajustes para Mobile)
+   ========================================= */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px; /* Fica mais próximo da borda no celular */
+        right: 20px;
+    }
+    
+    .whatsapp-icon {
+        width: 30px;
+        height: 30px;
     }
 }
