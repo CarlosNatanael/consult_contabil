@@ -33,13 +33,13 @@ nav {
   justify-content: space-between;
   align-items: center;
   transition: all 0.4s ease;
+  
+  /* NOVO: Fundo branco e uma leve sombra no topo */
+  background: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-nav.scrolled {
-  background: rgba(6,6,6,0.95);
-  backdrop-filter: blur(20px);
-  padding: 14px 60px;
-  border-bottom: 1px solid rgba(201,168,76,0.15);
-}
+
+/* O "FNS" continua dourado, mas o "Assessoria" precisa ficar escuro no fundo branco */
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.6rem;
@@ -48,17 +48,23 @@ nav.scrolled {
   color: var(--gold);
   text-decoration: none;
 }
-.nav-logo span { color: var(--text); font-weight: 300; }
+.nav-logo span { 
+  color: var(--black); 
+  font-weight: 600; 
+  transition: color 0.4s ease;
+}
+
+/* Os links também precisam ficar escuros no fundo branco */
 .nav-links { display: flex; gap: 40px; list-style: none; }
 .nav-links a {
-  color: var(--text-muted);
+  color: var(--black);
   text-decoration: none;
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  transition: color 0.3s;
   position: relative;
+  transition: color 0.3s ease;
 }
 .nav-links a::after {
   content: '';
@@ -70,6 +76,7 @@ nav.scrolled {
 }
 .nav-links a:hover { color: var(--gold); }
 .nav-links a:hover::after { width: 100%; }
+
 .nav-cta {
   border: 1px solid var(--gold);
   color: var(--gold) !important;
@@ -78,6 +85,34 @@ nav.scrolled {
   transition: all 0.3s ease !important;
 }
 .nav-cta:hover { background: var(--gold); color: var(--black) !important; }
+
+/* =========================================
+   ESTADO SCROLLED (Ao rolar a página para baixo)
+   ========================================= */
+nav.scrolled {
+  /* Fica transparente */
+  background: transparent;
+  box-shadow: none;
+  padding: 14px 60px;
+  /* Um blur super suave para ajudar na leitura caso passe por cima de textos */
+  backdrop-filter: blur(5px); 
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+
+/* O texto do logo volta a ficar claro */
+nav.scrolled .nav-logo span { 
+  color: var(--text); 
+  font-weight: 300; 
+}
+
+/* Os links voltam a ficar cinza/claros */
+nav.scrolled .nav-links a { 
+  color: var(--text-muted); 
+  font-weight: 500;
+}
+nav.scrolled .nav-links a:hover { 
+  color: var(--gold); 
+}
 /* HERO */
 .hero {
   min-height: 100vh;
@@ -819,20 +854,16 @@ footer {
   margin-bottom: 60px;
 }
 .footer-brand {}
-.footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: var(--gold);
-  margin-bottom: 6px;
+.footer-logo-container {
+    margin-bottom: 20px;
+    max-width: 180px; /* Ajuste este valor para o tamanho que desejar no rodapé */
 }
-.footer-tagline {
-  font-size: 0.6rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 24px;
+
+.footer-logo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(1.1); /* Opcional: realça um pouco o brilho no fundo escuro */
 }
 .footer-desc {
   font-size: 0.75rem;
