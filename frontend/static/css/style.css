@@ -983,11 +983,78 @@ footer {
   background-clip: text;
   animation: shimmer 4s linear infinite;
 }
+
+/* =========================================
+   MENU HAMBÚRGUER (ÍCONE)
+   ========================================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001; /* Fica acima do menu aberto */
+}
+
+/* Os 3 risquinhos do menu */
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background-color: var(--black); 
+  transition: all 0.3s ease;
+}
+
+/* Cor dos risquinhos quando a página rolar para o fundo escuro */
+nav.scrolled .hamburger span {
+  background-color: var(--text);
+}
+
 /* MOBILE */
 @media (max-width: 900px) {
   nav { padding: 20px 24px; }
   nav.scrolled { padding: 14px 24px; }
-  .nav-links { display: none; }
+  /* =========================================
+     MENU MOBILE (Tela cheia)
+     ========================================= */
+  .hamburger {
+    display: flex; /* Mostra o botão no celular */
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Esconde o menu todo para a direita da tela */
+    width: 100%;
+    height: 100vh;
+    background-color: #FFFFFF; /* Fundo branco para leitura */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: right 0.4s ease;
+    z-index: 1000;
+  }
+
+  /* Classe que o JS vai adicionar para mostrar o menu */
+  .nav-links.active {
+    right: 0; 
+  }
+
+  .nav-links a {
+    font-size: 1.2rem; /* Letras maiores para facilitar o toque */
+  }
+
+  /* Animação do botão hambúrguer virando um "X" */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background-color: var(--black);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background-color: var(--black);
+  }
   .hero { padding: 0 24px; }
   .hero-visual { display: none; }
   .hero-stats { right: 24px; gap: 24px; }

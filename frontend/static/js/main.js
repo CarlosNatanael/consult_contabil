@@ -109,4 +109,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroStats) {
         statsObs.observe(heroStats);
     }
+
+    // ==========================================
+    // MENU MOBILE (Hambúrguer)
+    // ==========================================
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    if (hamburger && navLinks) {
+        // Abre e fecha o menu ao clicar no ícone
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Fecha o menu automaticamente quando o cliente clica em algum link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 });
