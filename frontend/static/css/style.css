@@ -33,13 +33,13 @@ nav {
   justify-content: space-between;
   align-items: center;
   transition: all 0.4s ease;
+  
+  /* NOVO: Fundo branco e uma leve sombra no topo */
+  background: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-nav.scrolled {
-  background: rgba(6,6,6,0.95);
-  backdrop-filter: blur(20px);
-  padding: 14px 60px;
-  border-bottom: 1px solid rgba(201,168,76,0.15);
-}
+
+/* O "FNS" continua dourado, mas o "Assessoria" precisa ficar escuro no fundo branco */
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.6rem;
@@ -48,17 +48,23 @@ nav.scrolled {
   color: var(--gold);
   text-decoration: none;
 }
-.nav-logo span { color: var(--text); font-weight: 300; }
+.nav-logo span { 
+  color: var(--black); 
+  font-weight: 600; 
+  transition: color 0.4s ease;
+}
+
+/* Os links também precisam ficar escuros no fundo branco */
 .nav-links { display: flex; gap: 40px; list-style: none; }
 .nav-links a {
-  color: var(--text-muted);
+  color: var(--black);
   text-decoration: none;
   font-size: 0.7rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  transition: color 0.3s;
   position: relative;
+  transition: color 0.3s ease;
 }
 .nav-links a::after {
   content: '';
@@ -70,6 +76,7 @@ nav.scrolled {
 }
 .nav-links a:hover { color: var(--gold); }
 .nav-links a:hover::after { width: 100%; }
+
 .nav-cta {
   border: 1px solid var(--gold);
   color: var(--gold) !important;
@@ -78,6 +85,34 @@ nav.scrolled {
   transition: all 0.3s ease !important;
 }
 .nav-cta:hover { background: var(--gold); color: var(--black) !important; }
+
+/* =========================================
+   ESTADO SCROLLED (Ao rolar a página para baixo)
+   ========================================= */
+nav.scrolled {
+  /* Fica transparente */
+  background: transparent;
+  box-shadow: none;
+  padding: 14px 60px;
+  /* Um blur super suave para ajudar na leitura caso passe por cima de textos */
+  backdrop-filter: blur(5px); 
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+
+/* O texto do logo volta a ficar claro */
+nav.scrolled .nav-logo span { 
+  color: var(--text); 
+  font-weight: 300; 
+}
+
+/* Os links voltam a ficar cinza/claros */
+nav.scrolled .nav-links a { 
+  color: var(--text-muted); 
+  font-weight: 500;
+}
+nav.scrolled .nav-links a:hover { 
+  color: var(--gold); 
+}
 /* HERO */
 .hero {
   min-height: 100vh;
@@ -152,7 +187,7 @@ nav.scrolled {
 .hero-desc {
   font-size: 0.85rem;
   line-height: 1.9;
-  color: var(--text-muted);
+  color: #FFFFFF;
   font-weight: 300;
   letter-spacing: 0.5px;
   max-width: 460px;
@@ -320,7 +355,7 @@ section { padding: 120px 60px; }
 .section-title em { font-style: italic; color: var(--gold); }
 .section-sub {
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: #FFFFFF;
   line-height: 1.9;
   max-width: 480px;
   font-weight: 300;
@@ -572,9 +607,9 @@ section { padding: 120px 60px; }
   transform: translateY(0);
 }
 
-/* Ajuste na Setinha "Saiba mais ->" para acompanhar o movimento */
+/* Ajuste na Setinha "Saiba mais ->" */
 .service-arrow {
-  margin-top: 10px; /* Fica pertinho do título quando o cartão está fechado */
+  margin-top: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -585,6 +620,16 @@ section { padding: 120px 60px; }
   opacity: 0;
   transform: translateY(8px);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer; /* NOVO: Mostra a mãozinha de clique */
+}
+
+/* Quando passa o rato especificamente por cima da setinha, ela brilha mais */
+.service-arrow:hover {
+  filter: brightness(1.3);
+}
+
+.service-icon i, .modal-icon i {
+    color: var(--gold);
 }
 
 .service-card:hover .service-arrow { 
@@ -617,6 +662,44 @@ section { padding: 120px 60px; }
 .process-step {
   padding: 0 30px;
   text-align: center;
+  cursor: pointer; /* Mostra a mãozinha de clique */
+  transition: transform 0.3s;
+}
+
+/* Opcional: Levanta um pouquinho quando passa o mouse */
+.process-step:hover {
+  transform: translateY(-5px);
+}
+
+.step-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-weight: 300;
+  
+  /* Esconde o texto inicialmente */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* O que acontece quando o JS adicionar a classe 'active' */
+.process-step.active .step-desc {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 15px;
+  transform: translateY(0);
+}
+
+/* Deixa a bolinha numerada acesa (dourada) quando o passo estiver aberto */
+.process-step.active .step-num {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.3); /* Um leve brilho dourado */
 }
 .step-num {
   width: 80px; height: 80px;
@@ -647,12 +730,6 @@ section { padding: 120px 60px; }
   text-transform: uppercase;
   color: var(--text);
   margin-bottom: 12px;
-}
-.step-desc {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  line-height: 1.8;
-  font-weight: 300;
 }
 /* TESTIMONIALS */
 .testimonials { }
@@ -819,20 +896,16 @@ footer {
   margin-bottom: 60px;
 }
 .footer-brand {}
-.footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: var(--gold);
-  margin-bottom: 6px;
+.footer-logo-container {
+    margin-bottom: 20px;
+    max-width: 180px; /* Ajuste este valor para o tamanho que desejar no rodapé */
 }
-.footer-tagline {
-  font-size: 0.6rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 24px;
+
+.footer-logo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(1.1); /* Opcional: realça um pouco o brilho no fundo escuro */
 }
 .footer-desc {
   font-size: 0.75rem;
@@ -952,11 +1025,93 @@ footer {
   background-clip: text;
   animation: shimmer 4s linear infinite;
 }
+
+/* =========================================
+   MENU HAMBÚRGUER (ÍCONE)
+   ========================================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001; /* Fica acima do menu aberto */
+}
+
+/* Os 3 risquinhos do menu */
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background-color: var(--black); 
+  transition: all 0.3s ease;
+}
+
+/* Cor dos risquinhos quando a página rolar para o fundo escuro */
+nav.scrolled .hamburger span {
+  background-color: var(--text);
+}
+
 /* MOBILE */
 @media (max-width: 900px) {
   nav { padding: 20px 24px; }
   nav.scrolled { padding: 14px 24px; }
-  .nav-links { display: none; }
+  /* =========================================
+     MENU MOBILE (Tela cheia)
+     ========================================= */
+  .hamburger {
+    display: flex; /* Mostra o botão no celular */
+  }
+
+  .nav-links {
+    position: absolute; 
+    top: 100%; /* Começa exatamente abaixo da barra de navegação */
+    left: 5%; /* Deixa um espaço nas laterais */
+    width: 90%; /* Ocupa só 90% da largura, deixando bordas vazias */
+    
+    /* Efeito de Vidro (Suspenso e meio transparente) */
+    background-color: rgba(255, 255, 255, 0.85); /* Fundo branco com 85% de opacidade */
+    backdrop-filter: blur(15px); /* Desfoca o que estiver atrás do menu */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Bordinha branca bem suave */
+    border-radius: 12px; /* Deixa as pontas arredondadas */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra para dar a sensação de estar flutuando */
+    
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    
+    /* Estado inicial: Invisível e um pouco puxado para cima */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Quando clica no Hambúrguer */
+  .nav-links.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(15px); /* Desce um pouquinho criando um respiro da barra de navegação */
+  }
+
+  .nav-links a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  /* Animação do botão hambúrguer virando um "X" */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background-color: var(--black);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background-color: var(--black);
+  }
   .hero { padding: 0 24px; }
   .hero-visual { display: none; }
   .hero-stats { right: 24px; gap: 24px; }
@@ -1081,4 +1236,82 @@ footer {
 .contato-form input::placeholder,
 .contato-form textarea::placeholder {
     color: var(--text-muted);
+}
+
+/* =========================================
+   MODAL DE SERVIÇOS (Pop-up)
+   ========================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Fundo bem escuro e transparente */
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  
+  /* Escondido por padrão */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--dark2);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px; right: 20px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: var(--gold);
+}
+
+.modal-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-text {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 30px;
+  text-align: justify;
 }
