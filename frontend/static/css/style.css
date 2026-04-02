@@ -187,7 +187,7 @@ nav.scrolled .nav-links a:hover {
 .hero-desc {
   font-size: 0.85rem;
   line-height: 1.9;
-  color: var(--text-muted);
+  color: #FFFFFF;
   font-weight: 300;
   letter-spacing: 0.5px;
   max-width: 460px;
@@ -355,7 +355,7 @@ section { padding: 120px 60px; }
 .section-title em { font-style: italic; color: var(--gold); }
 .section-sub {
   font-size: 0.82rem;
-  color: var(--text-muted);
+  color: #FFFFFF;
   line-height: 1.9;
   max-width: 480px;
   font-weight: 300;
@@ -662,6 +662,44 @@ section { padding: 120px 60px; }
 .process-step {
   padding: 0 30px;
   text-align: center;
+  cursor: pointer; /* Mostra a mãozinha de clique */
+  transition: transform 0.3s;
+}
+
+/* Opcional: Levanta um pouquinho quando passa o mouse */
+.process-step:hover {
+  transform: translateY(-5px);
+}
+
+.step-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-weight: 300;
+  
+  /* Esconde o texto inicialmente */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transform: translateY(-10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* O que acontece quando o JS adicionar a classe 'active' */
+.process-step.active .step-desc {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 15px;
+  transform: translateY(0);
+}
+
+/* Deixa a bolinha numerada acesa (dourada) quando o passo estiver aberto */
+.process-step.active .step-num {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.3); /* Um leve brilho dourado */
 }
 .step-num {
   width: 80px; height: 80px;
@@ -692,12 +730,6 @@ section { padding: 120px 60px; }
   text-transform: uppercase;
   color: var(--text);
   margin-bottom: 12px;
-}
-.step-desc {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  line-height: 1.8;
-  font-weight: 300;
 }
 /* TESTIMONIALS */
 .testimonials { }

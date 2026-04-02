@@ -204,4 +204,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ==========================================
+    // PROCESSO INTERATIVO (Efeito Sanfona)
+    // ==========================================
+    const processSteps = document.querySelectorAll('.process-step');
+
+    processSteps.forEach(step => {
+        step.addEventListener('click', () => {
+            // Verifica se o passo que o cliente clicou já está aberto
+            const estaAberto = step.classList.contains('active');
+
+            // Primeiro, remove a classe 'active' de TODOS os passos para fechar qualquer um que esteja aberto
+            processSteps.forEach(s => s.classList.remove('active'));
+
+            // Se não estava aberto, agora ele abre. Se já estava, ele apenas fecha (comportamento de sanfona)
+            if (!estaAberto) {
+                step.classList.add('active');
+            }
+        });
+    });
 });
