@@ -84,22 +84,22 @@
           </p>
           <div class="about-pillars">
             <div class="pillar reveal delay-1">
-              <div class="pillar-icon">🎯</div>
+              <div class="pillar-icon"><i class="bi bi-bullseye"></i></div>
               <div class="pillar-title">Precisão</div>
               <div class="pillar-desc">Cada número tratado com máxima atenção e rigor técnico.</div>
             </div>
             <div class="pillar reveal delay-2">
-              <div class="pillar-icon">🔐</div>
+              <div class="pillar-icon"><i class="bi bi-shield-lock"></i></div>
               <div class="pillar-title">Segurança</div>
               <div class="pillar-desc">Sua empresa sempre em conformidade com a legislação.</div>
             </div>
             <div class="pillar reveal delay-3">
-              <div class="pillar-icon">⚡</div>
+              <div class="pillar-icon"><i class="bi bi-lightning-charge"></i></div>
               <div class="pillar-title">Agilidade</div>
               <div class="pillar-desc">Respostas rápidas e processos ágeis para seu dia a dia.</div>
             </div>
             <div class="pillar reveal delay-4">
-              <div class="pillar-icon">🤝</div>
+              <div class="pillar-icon"><i class="bi bi-person-square"></i></div>
               <div class="pillar-title">Proximidade</div>
               <div class="pillar-desc">Atendimento humanizado e consultivo em cada etapa.</div>
             </div>
@@ -260,14 +260,22 @@
         </div>
 
         <div class="cta-actions reveal-right">
-            <form action="#" method="POST" class="contato-form">
+            <form action="{{ url_for('enviar_contato') }}" method="POST" class="contato-form">
                 <input type="text" name="nome" placeholder="Seu Nome" required>
                 <input type="email" name="email" placeholder="Seu e-mail" required>
+                <input type="tel" name="telefone" placeholder="Seu Telefone / WhatsApp" required>
                 <textarea name="mensagem" placeholder="Como podemos te ajudar hoje?" rows="3" required></textarea>
                 <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">
                     <span>Enviar Mensagem</span>
                 </button>
             </form>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <script>
+                  alert("{{ messages[0] }}");
+                </script>
+              {% endif %}
+            {% endwith %}
             <a href="mailto:contabilidade.fns@gmail.com" class="cta-email" style="margin-top: 15px;">
                 ou envie para ✉ contabilidade.fns@gmail.com
             </a>
