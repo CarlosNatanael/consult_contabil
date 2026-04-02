@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FNS Assessoria Contábil</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FNS Assessoria Contábil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </head>
   <body>
 
     <!-- NAV -->
@@ -123,37 +124,37 @@
 
       <div class="services-grid">
         <div class="service-card featured reveal delay-1">
-          <span class="service-icon"></span>
+          <span class="service-icon"><i class="bi bi-building"></i></span>
           <h3 class="service-title">Abertura de Empresas</h3>
           <p class="service-desc">Abrimos sua empresa do zero com todo suporte jurídico e contábil. CNPJ, alvará, enquadramento fiscal — tudo resolvido com agilidade e segurança.</p>
           <div class="service-arrow">Saiba mais →</div>
         </div>
         <div class="service-card reveal delay-2">
-          <span class="service-icon"></span>
+          <span class="service-icon"><i class="bi bi-card-checklist"></i></span>
           <h3 class="service-title">Regularização de MEI</h3>
           <p class="service-desc">Regularize seu MEI com total tranquilidade. Resolvemos débitos, declarações atrasadas e mantemos sua situação sempre em dia com o fisco.</p>
           <div class="service-arrow">Saiba mais →</div>
         </div>
         <div class="service-card reveal delay-3">
-          <span class="service-icon"></span>
+          <span class="service-icon"><i class="bi bi-file-earmark-bar-graph"></i></span>
           <h3 class="service-title">Declaração IRPF MEI</h3>
           <p class="service-desc">Declaração de Imposto de Renda para MEI feita por especialistas, garantindo conformidade fiscal e aproveitamento máximo de deduções legais.</p>
           <div class="service-arrow">Saiba mais →</div>
         </div>
         <div class="service-card reveal delay-2">
-          <span class="service-icon"></span>
+          <span class="service-icon"><i class="bi bi-graph-up-arrow"></i></span>
           <h3 class="service-title">Plano de Carreira</h3>
           <p class="service-desc">Estruturamos planos de carreira estratégicos e bem fundamentados para sua empresa valorizar e reter talentos com embasamento legal e técnico.</p>
           <div class="service-arrow">Saiba mais →</div>
         </div>
         <div class="service-card reveal delay-3">
-          <span class="service-icon"></span>
+          <span class="service-icon"><i class="bi bi-people"></i></span>
           <h3 class="service-title">Descrição de Cargos</h3>
           <p class="service-desc">Elaboramos descrições detalhadas de cargos e tabelas salariais alinhadas ao mercado, garantindo equidade interna e compliance trabalhista.</p>
           <div class="service-arrow">Saiba mais →</div>
         </div>
         <div class="service-card reveal delay-4">
-          <span class="service-icon"></span>
+          <span class="service-icon"><i class="bi bi-calculator"></i></span>
           <h3 class="service-title">Consultoria Fiscal</h3>
           <p class="service-desc">Análise completa da sua situação tributária com foco na redução legal da carga fiscal, planejamento estratégico e prevenção de riscos.</p>
           <div class="service-arrow">Saiba mais →</div>
@@ -272,6 +273,18 @@
             </a>
         </div>
 
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="servicoModal">
+      <div class="modal-content">
+        <button class="modal-close" id="fecharModal">×</button>
+        <div class="modal-icon" id="modalIcon">🏢</div>
+        <h3 class="modal-title" id="modalTitle">Título do Serviço</h3>
+        <p class="modal-text" id="modalText">Texto descritivo do serviço aparecerá aqui.</p>
+        <a href="https://wa.me/5518997917846?text=Olá,%20gostaria%20de%20contratar%20os%20serviços%20da%20FNS." class="btn-primary" target="_blank" style="width: 100%; text-align: center; display: inline-block;">
+          <span>Contratar Serviço</span>
+        </a>
       </div>
     </div>
     <!-- FOOTER -->
