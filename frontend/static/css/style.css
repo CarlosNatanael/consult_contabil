@@ -880,10 +880,11 @@ section { padding: 120px 60px; }
   text-decoration: none;
   transition: color 0.3s;
 }
+/* Cor do texto de fundo (placeholder) - Branco Puro */
 .contato-form input::placeholder,
 .contato-form textarea::placeholder {
-    color: rgba(255, 255, 255, 0.7); /* Branco com 70% de opacidade para ficar elegante e não "gritar" na tela */
-    opacity: 1; /* O Firefox às vezes aplica transparência extra por padrão, isso corrige */
+    color: #FFFFFF; /* Branco 100% sólido */
+    opacity: 1; /* Garante que navegadores como o Firefox não apliquem transparência extra */
 }
 .cta-email:hover { color: var(--gold); }
 /* FOOTER */
@@ -1238,11 +1239,6 @@ nav.scrolled .hamburger span {
     background: var(--dark4);
 }
 
-.contato-form input::placeholder,
-.contato-form textarea::placeholder {
-    color: var(--text-muted);
-}
-
 /* =========================================
    MODAL DE SERVIÇOS (Pop-up)
    ========================================= */
@@ -1320,3 +1316,78 @@ nav.scrolled .hamburger span {
   margin-bottom: 30px;
   text-align: justify;
 }
+
+/* =========================================
+   TOAST NOTIFICATION (Aviso de Sucesso no Topo)
+   ========================================= */
+.toast {
+  position: fixed;
+  top: 40px; /* Distância do topo da tela */
+  left: 50%; /* Posiciona no centro horizontal */
+  
+  background: var(--dark3);
+  /* Mudei a borda da esquerda para baixo, fica mais elegante em popups no topo */
+  border-bottom: 3px solid var(--gold); 
+  color: var(--text);
+  padding: 16px 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+  
+  /* Tamanho ideal para PC e Celular */
+  width: 90%;
+  max-width: 450px;
+  
+  /* Escondido FORA da tela por cima, mantendo o centro (-50%) */
+  transform: translate(-50%, -150%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Quando o JS adiciona a classe 'show' */
+.toast.show {
+  /* Desce suavemente para a posição top: 40px */
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.toast-icon {
+  background: var(--gold);
+  color: var(--black);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  flex-shrink: 0; /* Impede o ícone de amassar */
+}
+
+.toast-message {
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.8rem;
+  cursor: pointer;
+  margin-left: auto; /* Empurra o X tudo para a direita */
+  transition: color 0.3s;
+  line-height: 1;
+}
+
+.toast-close:hover {
+  color: var(--gold);
+}
+
+/* Como já centralizamos com left: 50% e limitamos a width: 90%, 
+   ele já é naturalmente responsivo e não precisa de @media extra para celular! */
