@@ -283,8 +283,23 @@
             </form>
             {% with messages = get_flashed_messages() %}
               {% if messages %}
+                <div id="toast-notification" class="toast">
+                  <div class="toast-icon"><i class="bi bi-check-lg"></i></div>
+                  <div class="toast-message">{{ messages[0] }}</div>
+                  <button class="toast-close" onclick="document.getElementById('toast-notification').classList.remove('show')">×</button>
+                </div>
+                
                 <script>
-                  alert("{{ messages[0] }}");
+                  // Mostra a notificação com um pequeno atraso para dar um efeito suave
+                  setTimeout(() => {
+                    document.getElementById('toast-notification').classList.add('show');
+                  }, 100);
+                  
+                  // Esconde automaticamente depois de 5 segundos
+                  setTimeout(() => {
+                    const toast = document.getElementById('toast-notification');
+                    if (toast) toast.classList.remove('show');
+                  }, 5000);
                 </script>
               {% endif %}
             {% endwith %}
