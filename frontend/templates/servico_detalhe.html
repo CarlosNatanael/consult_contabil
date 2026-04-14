@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ servico.titulo }} | FNS Assessoria Contábil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <style>
+      .service-header {
+        padding: 180px 60px 80px;
+        text-align: center;
+        background: linear-gradient(180deg, var(--dark2) 0%, var(--black) 100%);
+      }
+      .service-header-icon {
+        font-size: 3.5rem;
+        color: var(--gold);
+        margin-bottom: 20px;
+      }
+      .service-header-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 3.5rem;
+        color: var(--text);
+        margin-bottom: 20px;
+      }
+      .service-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 60px 100px;
+      }
+      .service-intro {
+        font-size: 1.2rem;
+        color: var(--gold);
+        line-height: 1.8;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .service-text {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.9;
+        margin-bottom: 40px;
+        text-align: justify;
+      }
+      .service-grid-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 50px;
+        background: var(--dark3);
+        padding: 40px;
+        border: 1px solid rgba(201,168,76,0.1);
+        border-radius: 4px;
+      }
+      .info-box h4 {
+        color: var(--gold);
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-family: 'Cormorant Garamond', serif;
+      }
+      .info-box ul {
+        list-style: none;
+        padding: 0;
+      }
+      .info-box li {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .info-box li i { color: var(--gold); }
+      .service-cta {
+        text-align: center;
+        margin-top: 80px;
+      }
+      @media (max-width: 768px) {
+        .service-header { padding: 140px 24px 60px; }
+        .service-content { padding: 0 24px 80px; }
+        .service-grid-info { grid-template-columns: 1fr; padding: 25px; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav id="navbar">
+      <a href="{{ url_for('home') }}" class="nav-logo">FNS <span>Assessoria</span></a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home') }}#servicos">← Voltar aos Serviços</a></li>
+        <li><a href="{{ url_for('home') }}#contato" class="nav-cta">Fale Conosco</a></li>
+      </ul>
+    </nav>
+
+    <div class="service-header">
+      <div class="service-header-icon">
+        <i class="{{ servico.icone }}"></i>
+      </div>
+      <h1 class="service-header-title">{{ servico.titulo }}</h1>
+    </div>
+
+    <div class="service-content">
+      <p class="service-intro">{{ servico.intro }}</p>
+      
+      <p class="service-text">{{ servico.detalhes }}</p>
+
+      <div class="service-grid-info">
+        <div class="info-box">
+          <h4><i class="bi bi-star"></i> Principais Benefícios</h4>
+          <ul>
+            {% for beneficio in servico.beneficios %}
+              <li><i class="bi bi-check2"></i> {{ beneficio }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        
+        <div class="info-box">
+          <h4><i class="bi bi-person-badge"></i> Para Quem É?</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+            {{ servico.publico }}
+          </p>
+          
+          <h4><i class="bi bi-gem"></i> O Nosso Diferencial</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.7;">
+            {{ servico.diferencial }}
+          </p>
+        </div>
+      </div>
+
+      <div class="service-cta">
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--text); margin-bottom: 20px;">Precisa deste serviço?</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 30px;">Fale diretamente com um dos nossos consultores fiscais agora mesmo.</p>
+        <a href="https://wa.me/5518997917846?text=Olá,%20estou%20na%20página%20de%20{{ servico.titulo }}%20e%20gostaria%20de%20mais%20informações." class="btn-primary" target="_blank" style="display: inline-block;">
+          <span>Solicitar Orçamento via WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
+    <footer style="padding: 40px 60px; text-align: center; border-top: 1px solid rgba(201,168,76,0.08);">
+      <p style="font-size: 0.7rem; color: var(--text-muted);">© 2026 FNS Assessoria Contábil. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+      window.addEventListener('scroll', () => {
+          document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+      });
+    </script>
+  </body>
+</html>

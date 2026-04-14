@@ -1320,3 +1320,93 @@ nav.scrolled .hamburger span {
   margin-bottom: 30px;
   text-align: justify;
 }
+
+/* =========================================
+   MENU DROPDOWN (Submenu de Serviços)
+   ========================================= */
+.dropdown {
+  position: relative;
+}
+
+/* Ponte invisível para o mouse não perder o contato ao descer para o submenu */
+.dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 25px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 20px); /* Fica um pouco abaixo do menu principal */
+  left: 50%;
+  transform: translateX(-50%) translateY(15px); /* Centraliza e empurra um pouco pra baixo */
+  background: var(--dark2);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 6px;
+  min-width: 260px;
+  list-style: none;
+  padding: 15px 0;
+  
+  /* Escondido por padrão */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+/* Aparece quando passa o mouse no item "Serviços" */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu li {
+  margin: 0;
+}
+
+/* Estilo dos links dentro do submenu */
+.dropdown-menu a {
+  display: block;
+  padding: 12px 24px;
+  color: var(--text-muted) !important; /* Força a cor ignorando o menu branco do topo */
+  font-size: 0.65rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease !important;
+}
+
+.dropdown-menu a::after {
+  display: none !important; /* Remove aquela linha dourada animada dos links principais */
+}
+
+/* Efeito elegante ao passar o mouse na opção do submenu */
+.dropdown-menu a:hover {
+  background: rgba(201,168,76,0.05);
+  color: var(--gold) !important;
+  padding-left: 30px; /* Desliza a palavra levemente para a direita */
+}
+
+/* Ajuste para o Menu Mobile (Hambúrguer) */
+@media (max-width: 900px) {
+  .dropdown-menu {
+    position: static;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    padding: 10px 0 0 0;
+    min-width: 100%;
+  }
+  .dropdown-menu a {
+    font-size: 0.8rem !important;
+    padding: 10px 0;
+    text-align: center;
+  }
+}

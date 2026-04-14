@@ -24,7 +24,19 @@
 
       <ul class="nav-links" id="navLinks">
         <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#servicos">Serviços</a></li>
+        
+        <li class="dropdown">
+          <a href="#servicos">Serviços <i class="bi bi-chevron-down" style="font-size: 0.6rem; margin-left: 4px;"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('detalhe_servico', url_slug='abertura-de-empresas') }}">Abertura de Empresas</a></li>
+            <li><a href="{{ url_for('detalhe_servico', url_slug='regularizacao-de-mei') }}">Regularização de MEI</a></li>
+            <li><a href="{{ url_for('detalhe_servico', url_slug='declaracao-irpf') }}">Declaração IRPF MEI</a></li>
+            <li><a href="{{ url_for('detalhe_servico', url_slug='plano-de-carreira') }}">Plano de Carreira</a></li>
+            <li><a href="{{ url_for('detalhe_servico', url_slug='descricao-de-cargos') }}">Descrição de Cargos</a></li>
+            <li><a href="{{ url_for('detalhe_servico', url_slug='consultoria-fiscal') }}">Consultoria Fiscal</a></li>
+          </ul>
+        </li>
+        
         <li><a href="#processo">Processo</a></li>
         <li><a href="#depoimentos">Clientes</a></li>
         <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
